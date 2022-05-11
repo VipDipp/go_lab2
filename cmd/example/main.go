@@ -14,12 +14,10 @@ var (
 	eFlag = flag.String("e", "", "Expression to compute")
 	oFlag = flag.String("o", "", "Output file")
 	fFlag = flag.String("f", "", "Input file")
-	// TODO: Add other flags support for input and output configuration.
 )
 
 func main() {
 	flag.Parse()
-	fmt.Println(*eFlag, *oFlag, *fFlag)
 	if *eFlag != "" && *fFlag != "" {
 		panic("Only one input sorce allowed!")
 	}

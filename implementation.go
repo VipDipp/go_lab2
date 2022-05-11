@@ -1,43 +1,36 @@
-package main
+package lab2
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 )
 
-// TODO: document this function.
-// PrefixToPostfix converts
 func main() {
-	for {
-		reader := bufio.NewReader(os.Stdin)
-		str, err := reader.ReadString('\n')
-		errorHandler(err)
-		input := strings.TrimSuffix(str, "\r\n")
-		input = strings.ReplaceAll(input, " ", "")
-		PrefixToInfix(input)
-	}
+	reader := bufio.NewReader(os.Stdin)
+	str, err := reader.ReadString('\n')
+	errorHandler(err)
+	input := strings.TrimSuffix(str, "\r\n")
+	input = strings.ReplaceAll(input, " ", "")
+	PrefixToInfix(input)
 }
 
 func PrefixToInfix(input string) (string, error) {
-	fmt.Println(input)
 	var symbols []rune
-	var symbol rune
-	count := true
-	done := false
-	var buf rune
+	var symbol, buf rune
+	count, done := true, false
 	var output []string
-	str_buf := ""
-	end := ""
+	str_buf, end := "", ""
 	for i, el := range input {
 		if el == '+' || el == '-' || el == '*' || el == '/' || el == '^' {
 
 			if i == len(input)-1 {
-				fmt.Println("you can't end with symbol!")
-				end = "error"
-				break
+				err := errors.New("you can't end with symbol!")
+				end = ""
+				return end, err
 			}
 			if count == false && len(symbols) != 0 {
 				symbol, symbols = symbols[len(symbols)-1], symbols[:len(symbols)-1]
@@ -79,14 +72,21 @@ func PrefixToInfix(input string) (string, error) {
 			if i == len(input)-1 {
 				output = append(output, (string(buf) + ")"))
 			}
+		} else if i == len(input)-1 {
+			err := errors.New("What da dis")
+			end = ""
+			return end, err
 		}
 	}
-	fmt.Println(output)
+	if len(symbols) != 0 {
+		err := errors.New("TOO MANY SYMBOLS!!!")
+		end = ""
+		return end, err
+	}
 	for _, el := range output {
 		end = end + el
 	}
-	fmt.Println(end)
-	return "TODO", fmt.Errorf("TODO")
+	return end, nil
 }
 
 func errorHandler(err error) {
