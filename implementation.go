@@ -50,7 +50,9 @@ func PrefixToInfix(input string) (string, error) {
 			if count {
 				buf = el
 				count = false
-				output = append(output, "(")
+				if len(symbols) != 0 {
+					output = append(output, "(")
+				}
 				continue
 			}
 			if len(symbols) != 0 {
