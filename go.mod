@@ -1,5 +1,5 @@
 // TODO: Rename to your own module.
-module github.com/roman-mazur/architecture-lab-2
+module github.com/VipDipp/go_lab2
 
 go 1.17
 
