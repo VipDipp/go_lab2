@@ -1,4 +1,13 @@
-Шаблон для 2-гої роботи з архітектури ПЗ
+Лабораторна робота №2 Архітектура ПЗ
 ---
 
-Використайте кнопку **"Use this template"**, щоб створити власний репозиторій.
+### Team:
++ [Kukharuk Oleksandr](https://github.com/VipDipp) 
+
+I'm alone(
+
+### Приклади збірки:
+
++ https://github.com/VipDipp/go_lab2/actions/runs/2309546029 (Success)
++ https://github.com/VipDipp/go_lab2/actions/runs/2309537393 (Fail)
++ https://github.com/VipDipp/go_lab2/actions/runs/2309494832 (Success)
