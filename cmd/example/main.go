@@ -25,35 +25,28 @@ func main() {
 	}
 	var input io.Reader
 	var output io.Writer
+	var err error
 
 	if *eFlag != "" {
-		input := strings.NewReader(*eFlag)
+		input = strings.NewReader(*eFlag)
 	}
 	if *fFlag != "" {
-		input, err := os.Open(*fFlag)
+		input, err = os.Open(*fFlag)
 		errorHandler(err)
 	}
 	if *oFlag != "" {
-		output, err := os.Create(*oFlag)
+		output, err = os.Create(*oFlag)
 		errorHandler(err)
 	} else {
 		output = os.Stdout
 	}
 	handler := lab2.ComputeHandler{Input: input, Output: output}
-	err := handler.Compute()
+	err = handler.Compute()
 	errorHandler(err)
-	// TODO: Change this to accept input from the command line arguments as described in the task and
-	//       output the results using the ComputeHandler instance.
-	//       handler := &lab2.ComputeHandler{
-	//           Input: {construct io.Reader according the command line parameters},
-	//           Output: {construct io.Writer according the command line parameters},
-	//       }
-	//       err := handler.Compute()
 }
 
 func errorHandler(err error) {
 	if err != nil {
 		fmt.Println(err)
-		return
 	}
 }
